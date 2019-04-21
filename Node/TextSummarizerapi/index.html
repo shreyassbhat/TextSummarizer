@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="images/img-01.png" alt="IMG">
+				</div>
+
+				<form class="form-horizontal">
+					<form class="login100-form validate-form">
+					<span class="login100-form-title">
+						AUTOMATIC TEXT SUMMARIZER
+					</span>
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+              <span class="login100-form-title">
+                  your text goes here
+                </span>
+						<textarea   rows="5" cols="50" id="fulltext" name="fulltext" placeholder="Paste an article here"></textarea>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input id="num" type="numbers" name="num" placeholder="select from 1-10" max="10"/>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button class="btn btn-primary btn-lg btn-block" id="submit">SUBMIT</button>
+					</div>
+				</form> 
+
+					<div class="text-center p-t-12">
+						<span class="txt1">
+							GET YOUR SUMMARIES HERE
+						</span>
+						
+					</div>
+
+					<div class="text-center p-t-136">
+						
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+  <script src="js/main.js"></script>
+  
+  <script>
+      const article = document.getElementById('fulltext').value;
+      
+      const number = document.getElementById('num').value;
+      const getButton = document.getElementById('submit');
+      
+      getButton.addEventListener('click',()=> {
+          console.log(article);
+        
+    fetch('http://localhost:3400/summarizer/summary', {
+
+    method: 'POST',
+    body:{
+        url: article,
+        num : number
+     },
+     headers: {
+      'Content-Type': 'application/json'
+       }
+    })
+    .then(response =>
+    response.json().then(data => ({
+    data: data,
+    status: response.status
+  })
+  ).then(res => {
+    console.log(res.data);
+    this.setState({ Data: res.data })
+    console.log(this.state.Data);
+    }));
+  
+  });
+      
+      </script>
+
+</body>
+</html>

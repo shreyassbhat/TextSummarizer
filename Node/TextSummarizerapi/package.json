@@ -1,0 +1,35 @@
+{
+  "name": "lexrank",
+  "version": "1.0.3",
+  "description": "Text summarization using Lexrank",
+  "main": "app.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "natural": "^0.2.1",
+    "request": "^2.55.0",
+    "sentence-tokenizer": "^0.0.7",
+    "unfluff": "^0.10.0",
+    "wuzzy": "^0.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linanqiu/lexrank.git"
+  },
+  "keywords": [
+    "lexrank"
+  ],
+  "author": "linanqiu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/linanqiu/lexrank/issues"
+  },
+  "homepage": "https://github.com/linanqiu/lexrank"
+}
